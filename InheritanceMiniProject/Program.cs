@@ -19,27 +19,75 @@ namespace InheritanceMiniProject
         }
     }
 
+    public interface IRentalable
+    {
+        void Rent();
+        void ReturnRental();
+    }
+
+    public interface IPurchasable
+    {
+        void Purchase();
+    }
+
     public class InventoryItemModel
     {
         public string ProductName { get; set; }
+        public int QuantityInStock { get; set; }
 
     }
 
-    public class VehicleModel : InventoryItemModel
+    public class VehicleModel : InventoryItemModel, IPurchasable, IRentalable
     {
         public decimal DealerFee { get; set; }
+
+        public void Purchase()
+        {
+            QuantityInStock -= 1;
+            Console.WriteLine("This vehicle has been purchased.");
+        }
+
+        public void Rent()
+        {
+            QuantityInStock -= 1;
+            Console.WriteLine("This vehicle has been rented.");
+        }
+
+        public void ReturnRental()
+        {
+            QuantityInStock += 1;
+            Console.WriteLine("This vehicle has been returned.");
+        }
     }
 
-    public class BookModel : InventoryItemModel
+    public class BookModel : InventoryItemModel, IPurchasable
     {
         public int NumberOfPages { get; set; }
+
+        public void Purchase()
+        {
+            QuantityInStock -= 1;
+            Console.WriteLine("This book has been purchased.");
+        }
     }
 
-    public class Excavator : InventoryItemModel
+    public class Excavator : InventoryItemModel, IRentalable
     {
         public void Dig()
         {
             Console.WriteLine("I am digging.");
+        }
+
+        public void Rent()
+        {
+            QuantityInStock -= 1;
+            Console.WriteLine("This excavator has been rented.");
+        }
+
+        public void ReturnRental()
+        {
+            QuantityInStock += 1;
+            Console.WriteLine("This excavator has been returned.");
         }
     }
 }
