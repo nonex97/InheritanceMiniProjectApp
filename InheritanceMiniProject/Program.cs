@@ -10,6 +10,10 @@ namespace InheritanceMiniProject
     {
         static void Main(string[] args)
         {
+            List<InventoryItemModel> inventory = new List<InventoryItemModel>();
+
+            inventory.Add(new VehicleModel { DealerFee = 25, ProductName = "Kia Optima" });
+            inventory.Add(new BookModel { ProductName = "A tale of two Cities", NumberOfPages = 350 });
 
             Console.ReadLine();
         }
@@ -21,7 +25,7 @@ namespace InheritanceMiniProject
 
     }
 
-    public class Vehicle : InventoryItemModel
+    public class VehicleModel : InventoryItemModel
     {
         public decimal DealerFee { get; set; }
     }
@@ -29,5 +33,13 @@ namespace InheritanceMiniProject
     public class BookModel : InventoryItemModel
     {
         public int NumberOfPages { get; set; }
+    }
+
+    public class Excavator : InventoryItemModel
+    {
+        public void Dig()
+        {
+            Console.WriteLine("I am digging.");
+        }
     }
 }
